@@ -1027,7 +1027,7 @@ if(!i2c->i2c_event){
   }
 if(i2c->i2c_event) {
   uint32_t ret=xEventGroupClearBits(i2c->i2c_event, 0xFF);
-  if(ret != ESP_OK) log_e("Unable to Clear Event Bits=%d",ret);
+  if(ret != ESP_OK) log_d("Unable to Clear Event Bits=%d",ret); //blup: was log_e()
   }
 else {// failed to create EventGroup
   log_e("eventCreate failed=%p",i2c->i2c_event);
