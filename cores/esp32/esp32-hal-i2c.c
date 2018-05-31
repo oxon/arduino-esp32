@@ -622,7 +622,7 @@ while(a<i2c->queueCount){
   a++;
   }
 #else
-log_n("Enable Core Debug Level \"Error\"");
+//log_n("Enable Core Debug Level \"Error\"");  //blup
 #endif
 }
  
@@ -971,7 +971,7 @@ for(uint32_t a=1;a<=INTBUFFMAX;a++){
   if(intBuff[b][0][num]!=0) log_e("[%02d] 0x%04x 0x%04x 0x%04x 0x%04x 0x%08x",b,((intBuff[b][0][num]>>16)&0xFFFF),(intBuff[b][0][num]&0xFFFF),((intBuff[b][1][num]>>16)&0xFFFF),(intBuff[b][1][num]&0xFFFF),intBuff[b][2][num]);
   }
 #else
-log_n("enable Core Debug Level \"Error\"");
+//log_n("enable Core Debug Level \"Error\""); //blup
 #endif
 }
  
@@ -1026,8 +1026,7 @@ if(!i2c->i2c_event){
   i2c->i2c_event = xEventGroupCreate();
   }
 if(i2c->i2c_event) {
-  uint32_t ret=xEventGroupClearBits(i2c->i2c_event, 0xFF);
-  if(ret != ESP_OK) log_d("Unable to Clear Event Bits=%d",ret); //blup: was log_e()
+  xEventGroupClearBits(i2c->i2c_event, 0xFF);
   }
 else {// failed to create EventGroup
   log_e("eventCreate failed=%p",i2c->i2c_event);
@@ -1155,7 +1154,7 @@ if(!(eBits==EVENT_DONE)&&(eBits&~(EVENT_ERROR_NAK|EVENT_ERROR_DATA_NAK|EVENT_ERR
   i2cDumpI2c(i2c);
   i2cDumpInts(i2c->num);
 #else
-  log_n("I2C exitCode=0x%x",eBits);
+  //log_n("I2C exitCode=0x%x",eBits); //blup
 #endif
   }
 
